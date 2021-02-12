@@ -52,4 +52,7 @@ def combination(n,r):
 
 # Generate number triangles/pyramids, pascal triangle
 def pascal_triangle(n):
-    for i in range
+    for i in range(0,n):
+        for j in range(0,i+1):
+            print(combination(i,j),end=" ")
+        print("\n")
