@@ -35,17 +35,13 @@ def triangular_num(n):
 
 # Maximum number by deleting single digit in a 4 digit number 5872 - 872, 9865 - 985
 def max_digit(n):
-    l1 = []
-    s = ""
-    while(n>0):
-        l1.append(str(n%10))
-        n = n//10
-    l1 = sorted(l1)
-    l1 = l1[::-1]
-    l1.pop()
-    s = s.join(l1)
-    return s
-
+    i = 1
+    max = 0
+    while n//i>0:
+        temp = (n//i*10)*i + (n%i)
+        if(temp>max):
+            max = temp
+    return max
 # No.of combinations for n teams to play each other, i.e. nCr
 def combination(n,r):
     return int(factorial(n)/(factorial(r)*factorial(n-r)))
@@ -56,3 +52,12 @@ def pascal_triangle(n):
         for j in range(0,i+1):
             print(combination(i,j),end=" ")
         print("\n")
+
+# Generate Super Prime
+def superPrime(a,b):
+    l = []
+    prime_numbers = prime_number_range(a,b)
+    for i in range(0,len(prime_numbers)):
+        if isPrime(i):
+            l.append(prime_numbers[i])
+    return l
