@@ -38,9 +38,10 @@ def max_digit(n):
     i = 1
     max = 0
     while n//i>0:
-        temp = (n//i*10)*i + (n%i)
+        temp = (n//(i*10))*i + (n%i)
         if(temp>max):
             max = temp
+        i = i*10
     return max
 # No.of combinations for n teams to play each other, i.e. nCr
 def combination(n,r):
