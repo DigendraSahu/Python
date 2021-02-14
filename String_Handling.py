@@ -1,6 +1,21 @@
 # Correct the malformed time string , for e.g "5:70:65" to "6:11:05"
+def malformed_time(a):
+    l = a.split(":")
+    for i in range(0,len(l)):
+        l[i] = int(l[i])
+    h = l[0]
+    m = l[1]
+    s = l[2]
+    m = m + s//60
+    s = s%60
+    h = h + m//60
+    m = m%60
+    ans = f"{h}:{m}:{s}"
+    return ans
 # Correct the malformed date string , for e.g. "45/8/2018" to "14/9/2018"
+
 # Convert ip address from "a.b.c.d" format into integer and vice versa
+
 # Given a string, find the mexican wave
 def maxican_wave(s):
     ans = []
@@ -56,10 +71,12 @@ def isIsogram(word):
             return False
     return True
 # RGB to Hex conversion and vice versa, e.g. (255,0,255) into 0xFF00FF
+
 # Generate accumulated strings,e.g. abcd ==> A-Bb-Ccc-Dddd
 def accumulated(s):
-    for i in range(1,len(s)+1):
+    for i in range(0,len(s)):
+        print(s[i].capitalize(),end="")
         for j in range(0,i):
-            print(s[i-1],end=" ")
-            
-        print("-",end=" ")
+            print(s[i],end="")
+        if(i!=len(s)-1):
+         print("-",end=" ")
