@@ -1,3 +1,5 @@
+from decision_Making import is_leap
+import ipaddress
 # Correct the malformed time string , for e.g "5:70:65" to "6:11:05"
 def malformed_time(a):
     l = a.split(":")
@@ -12,9 +14,46 @@ def malformed_time(a):
     m = m%60
     ans = f"{h}:{m}:{s}"
     return ans
-# Correct the malformed date string , for e.g. "45/8/2018" to "14/9/2018"
 
+# Correct the malformed date string , for e.g. "45/8/2018" to "14/9/2018"
+def malformed_date(a):
+    l = a.split("/")
+    for i in range(0,len(l)):
+        l[i] = int(l[i])
+    d = l[0]
+    m = l[1]
+    y = l[2]
+    if(m == 2):
+        if is_leap(y):
+            m += d//29
+            d %= 29
+            y += m//12
+            m %= 12
+        else:
+            m += d//28
+            d %= 28
+            y += m//12
+            m %= 12
+    if(m in [4,6,9,11]):
+        m += d//30
+        d %= 30
+        y += m//12
+        m %= 12    
+    else:
+        m += d//31
+        d %= 31
+        y += m//12
+        m %= 12  
+    ans = (f"{d}/{m}/{y}")
+    return ans
 # Convert ip address from "a.b.c.d" format into integer and vice versa
+def ip_address(ip):
+    try:
+        ip=int(ip)
+        z=ipaddress.ip_address(ip)
+    except:
+        ans = ipaddress.ip_address(ip)  
+        return(int(ans))
 
 # Given a string, find the mexican wave
 def maxican_wave(s):
@@ -71,7 +110,16 @@ def isIsogram(word):
             return False
     return True
 # RGB to Hex conversion and vice versa, e.g. (255,0,255) into 0xFF00FF
-
+def RGB_hexa(a):
+    ans = "0x"
+    for i in a:
+        if(i>255 or i<0):
+            return None
+        else:
+            h = hex(i)
+            h = h[2:]
+            ans = ans + h
+    return ans
 # Generate accumulated strings,e.g. abcd ==> A-Bb-Ccc-Dddd
 def accumulated(s):
     for i in range(0,len(s)):
